@@ -63,6 +63,10 @@
             //linkAtIndex:这个函数就是通过idx根据位置来判断第idx个字符是否在data.linkArray 这个之前就设置好的存放链接的数组中
             //意思就是看你点击的这个字符是否是之前设置好的字符链接中的字符中的一个
             linkdata = [self linkAtIndex:idx linkArray:data.linkArray];
+            NSString * urlStr = @"https://github.com/samiu980728/Cor   https://github.com/samiu980728/CoreText-/edit/master/README.md 12 212121212565656565656565";
+            NSArray * urlArray = [[NSArray alloc] init];
+            NSString * realStr = [urlStr substringFromIndex:idx];
+            linkdata.urlString = realStr;
             break;
         }
     }
@@ -82,11 +86,15 @@
     return CGRectMake(point.x, point.y, width, height);
 }
 
+#pragma mark attention 在这里加一个参数 需要用这个数组存储显示界面的所有单词 依次序排好 这样就可以通过CFIdex i 来或得到这个数组中的某个单元
 + (CoreTextLinkData *)linkAtIndex:(CFIndex)i linkArray:(NSArray *)linkArray {
+    NSLog(@"linkArray = %@",linkArray);
     CoreTextLinkData *linkdata = nil;
     for (CoreTextLinkData *data in linkArray) {
         //data.range: 文字在属性文字中的范围
         //NSLocationInRange: 判断所给的下标i是否在data.range内 data.range是NSRange类型
+        NSRange range = data.range;
+        //我懂了 刚刚后面那个23 23 23 这些不能加到那个链接中 得重新创建一个富文本来添加
         if (NSLocationInRange(i, data.range)) {
             linkdata = data;
             break;

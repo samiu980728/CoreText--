@@ -37,13 +37,19 @@
     //用一个数组存储所有文字信息
     NSUInteger startPos = attStringM.length;
     NSLog(@"startPos = %li",startPos);
+    NSAttributedString * attString0 = [[NSAttributedString alloc] initWithString:@"GaoYiJia"];
+    [attStringM appendAttributedString:attString0];
+    startPos = attStringM.length;
     NSAttributedString * attString = [self parseAttributedContentWithoutNSDictionaryButConfig:config];
     [attStringM appendAttributedString:attString];
     NSRange linkRange = NSMakeRange(startPos, attString.length);
     CoreTextLinkData * linkdata = [[CoreTextLinkData alloc] init];
     linkdata.range = linkRange;
-    linkdata.urlString = @"https://github.com/samiu980728/CoreText-/edit/master/README.md";
+    //这作用就是为了显示到弹窗上 没啥其他作用
+    //linkdata.urlString = @"https://github.com/samiu980728/CoreText-/edit/master/README.mdahahhahah";
     [linkArray addObject:linkdata];
+    
+#pragma mark Answer 我大概懂她的思路了 因为上面还需要传一个rang参数——范围 所以就需要有rang的起点和长度 那么起点的计算就至关重要
     
 #pragma mark attention 还可以通过attStringM 添加其他样式的富文本 再看一下这个函数应该在哪里调用
     return attStringM;
@@ -67,7 +73,7 @@
     //配置文字
 //    NSString *content = dict[@"content"];
 //    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:content attributes:attributes];
-    NSAttributedString * attString1 = [[NSAttributedString alloc] initWithString:@"https://github.com/samiu980728/CoreText-/edit/master/README.md"];
+    NSAttributedString * attString1 = [[NSAttributedString alloc] initWithString:@"https://github.com/samiu980728/CoreText-/edit/master/README.md 12 212121212565656565656565"];
     
     return attString1;
 }

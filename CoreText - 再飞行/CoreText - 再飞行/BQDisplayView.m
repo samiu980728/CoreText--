@@ -35,6 +35,7 @@
     
     CoreTextLinkData * linkData = [CoreTextLinkData touchLinkInView:self atPoint:point data:self.data];
     if (linkData != nil) {
+#pragma mark Request 新需求:想点击不同的文字 出现的弹窗上
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:linkData.urlString delegate:nil cancelButtonTitle:@"OK222" otherButtonTitles:nil];
         [alert show];
         return;
